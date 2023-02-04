@@ -3,7 +3,7 @@ import { Statistics } from 'components/Statistics/Statistics';
 import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 import { Section } from 'components/Section/Section';
 import { Notification } from './Notification/Notification';
-
+import { SectionBlock } from './Section/Section.styled';
 export class App extends Component {
   state = {
     good: 0,
@@ -35,7 +35,7 @@ export class App extends Component {
 
   render() {
     return (
-      <>
+      <SectionBlock>
         <Section title="Please leave feedback">
           <FeedbackOptions
             options={['Good', 'Neutral', 'Bad']}
@@ -55,7 +55,7 @@ export class App extends Component {
             <Notification message="There is no feedback"></Notification>
           )}
         </Section>
-      </>
+      </SectionBlock>
     );
   }
 }
