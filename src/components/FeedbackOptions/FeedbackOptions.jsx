@@ -1,7 +1,5 @@
-import {
-  FeedbackBtnList,
-  FeedbackButton,
-} from 'feedbackItem/FeedbackBtn.styled';
+import { FeedbackBtnList, FeedbackButton } from './FeedbackOptions.styled';
+
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => (
   <FeedbackBtnList>
     {options.map((item, index) => (

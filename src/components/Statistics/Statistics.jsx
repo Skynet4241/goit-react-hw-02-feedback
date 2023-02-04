@@ -7,7 +7,6 @@ export const Statistics = ({
 }) => {
   return (
     <>
-      <h3>Statistic</h3>
       <ul>
         <li>
           <p>Good: {good}</p>
