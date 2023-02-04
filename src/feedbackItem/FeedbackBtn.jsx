@@ -1,10 +1,7 @@
 import { Component } from 'react';
-import {
-  FeedbackHeading,
-  FeedbackBtnList,
-  FeedbackButton,
-} from './FeedbackBtn.styled';
-
+import { FeedbackHeading } from './FeedbackBtn.styled';
+import { Statistics } from 'components/Statistics/Statistics';
+import { FeedbackOptions } from 'components/FeedbackOptions/FeedbackOptions';
 export class FeedbackBtn extends Component {
   state = {
     good: 0,
@@ -12,27 +9,36 @@ export class FeedbackBtn extends Component {
     bad: 0,
   };
 
-  clickBtnGood = () => {
-    this.setState(prevState => {
-      return {
-        good: prevState.good + 1,
-      };
-    });
+  feedbackHandler = e => {
+    if (e === 'Good') {
+      this.setState({ good: this.state.good + 1 });
+    } else if (e === 'Neutral') {
+      this.setState({ neutral: this.state.neutral + 1 });
+    } else if (e === 'Bad') {
+      this.setState({ bad: this.state.bad + 1 });
+    }
   };
-  clickBtnNeutral = () => {
-    this.setState(prevState => {
-      return {
-        neutral: prevState.neutral + 1,
-      };
-    });
-  };
-  clickBtnBad = () => {
-    this.setState(prevState => {
-      return {
-        bad: prevState.bad + 1,
-      };
-    });
-  };
+  //   clickBtnGood = () => {
+  //     this.setState(prevState => {
+  //       return {
+  //         good: prevState.good + 1,
+  //       };
+  //     });
+  //   };
+  //   clickBtnNeutral = () => {
+  //     this.setState(prevState => {
+  //       return {
+  //         neutral: prevState.neutral + 1,
+  //       };
+  //     });
+  //   };
+  //   clickBtnBad = () => {
+  //     this.setState(prevState => {
+  //       return {
+  //         bad: prevState.bad + 1,
+  //       };
+  //     });
+  //   };
 
   countTotalFeedback = () => {
     let total = this.state.good + this.state.neutral + this.state.bad;
@@ -50,37 +56,30 @@ export class FeedbackBtn extends Component {
     return (
       <>
         <FeedbackHeading>Please leave feedback</FeedbackHeading>
-        <FeedbackBtnList>
+        <FeedbackOptions
+          options={['Good', 'Neutral', 'Bad']}
+          onLeaveFeedback={this.feedbackHandler}
+        />
+        {/* <FeedbackBtnList>
           <li>
-            <FeedbackButton onClick={this.clickBtnGood}>Good</FeedbackButton>
+            <FeedbackButton onClick={this.feedbackHandler}>Good</FeedbackButton>
           </li>
           <li>
-            <FeedbackButton onClick={this.clickBtnNeutral}>
+            <FeedbackButton onClick={this.feedbackHandler}>
               Neutral
             </FeedbackButton>
           </li>
           <li>
-            <FeedbackButton onClick={this.clickBtnBad}>Bad</FeedbackButton>
+            <FeedbackButton onClick={this.feedbackHandler}>Bad</FeedbackButton>
           </li>
-        </FeedbackBtnList>
-        <h3>Statistic</h3>
-        <ul>
-          <li>
-            <p>Good: {this.state.good}</p>
-          </li>
-          <li>
-            <p>Neutral: {this.state.neutral}</p>
-          </li>
-          <li>
-            <p>Bad: {this.state.bad}</p>
-          </li>
-          <li>
-            <p>Total: {this.countTotalFeedback()}</p>
-          </li>
-          <li>
-            <p>Positive feedback: {this.countPositiveFeedbackPercentage()}%</p>
-          </li>
-        </ul>
+        </FeedbackBtnList> */}
+        <Statistics
+          good={this.state.good}
+          neutral={this.state.neutral}
+          bad={this.state.bad}
+          total={this.countTotalFeedback()}
+          positivePercentage={this.countPositiveFeedbackPercentage()}
+        />
       </>
     );
   }
